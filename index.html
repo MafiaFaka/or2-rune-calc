@@ -1,13 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>temp-vite-project</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rune Time Calculator</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/decimal.js@10.4.3/decimal.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rune Time Calculator</h1>
+            <p class="subtitle">Made by <span style="color: #30e949; font-weight: 600;">@mafia_faka</span> on discord.</p>
+            <p class="subtitle">DM me for update or feedback for any errors.</p>
+            <p class="subtitle info-banner">📝 For a full rune guide, check out the <a href="https://trello.com/b/QGOrP9ki/omega-rarities-2" target="_blank">Comprehensive Guide</a>!</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('calculator')">Rune Time</button>
+            <button class="tab" onclick="showTab('rare-runes')">Rare Runes</button>
+        </div>
+
+        <div id="calculator-tab" class="tab-content">
+            <div class="section">
+                <h2>Rune Stats</h2>
+                <div class="input-group">
+                    <label for="cloneToggle">Rune Clone</label>
+                    <input type="number" id="runeCloneInput" value="1" min="0" step="1" oninput="updateRuneClones()">
+                    <label for="luckInput">Rune Luck</label>
+                    <input type="number" id="luckInput" value="1" min="0" step="0.01" oninput="updateLuck()">
+                    <label>Enter your Runes Per Second (RPS)</label>
+                    <select id="numberFormatSelect" onchange="renderDrops(); parseRate();">
+                        <option value="short">Short</option>
+                        <option value="full">Full</option>
+                        <option value="scientific">Scientific</option>
+                    </select>                
+                    <input type="text" id="rateInput" placeholder="4.07" oninput="parseRate()" onblur="normalizeRateInput()">
+                    <div class="parsed-rate" id="parsedRate"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Prestigious Rune Times</h2>
+                <div class="controls">
+                    <input type="text" id="filterInput" placeholder="Filter runes by name..." style="flex: 1; min-width: 200px;" oninput="renderDrops()">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="hideInstant" onchange="renderDrops()">
+                        <label for="hideInstant" style="margin: 0; color: #30e949;">Hide Instant</label>
+                    </div>
+                    <select id="timeUnitSelect" onchange="renderDrops()">
+                        <option value="auto">Auto Format</option>
+                        <option value="seconds">Seconds</option>
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                    </select>
+                    <select id="sortSelect" onchange="renderDrops()">
+                        <option value="recommended">Recommended</option>
+                        <option value="easiest">Easiest First</option>
+                        <option value="hardest">Hardest First</option>
+                    </select>
+                </div>
+
+                <div class="drop-list" id="dropList">
+                    <!-- Drops will be added here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div id="rare-runes-tab" class="tab-content" style="display: none;">
+            <div class="section">
+                <h2>Rare Runes Calculator</h2>
+                <p style="color: #b8b8d4;">Calculate how much bulk you need to adjust to get the perfect RPS to get rare runes!</p>
+                <p style="color: #9ca3af; margin-top: 20px;">Coming soon...</p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
