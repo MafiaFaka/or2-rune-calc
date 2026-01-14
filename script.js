@@ -46,7 +46,7 @@ const drops = [
         rate: new Decimal('2.5e40'), 
         type: "Prestigious", 
         color: "linear-gradient(135deg,rgb(164, 84, 211), rgb(57, 16, 80))",
-        bonuses: ["x? Luck", "x100B XP", "x100 Snowflake", "x4 Rune Bulk", "x8 Rune Speed", "x5 Rune Luck"]
+        bonuses: ["x200B Luck", "x200B XP", "x100 Snowflake", "x4 Rune Bulk", "x8 Rune Speed", "x5 Rune Luck"]
     },
     { 
         name: "Genesis Slime", 
