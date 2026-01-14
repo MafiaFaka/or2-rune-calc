@@ -17,49 +17,49 @@ const drops = [
         name: "Prismatic Slime", 
         rate: new Decimal('1e15'), 
         type: "Prestigious", 
-        color: "linear-gradient(135deg, #4a0000, #6b0000)",
+        color: "linear-gradient(135deg,rgb(14, 89, 99),rgb(94, 17, 42))",
         bonuses: ["x3 Rune Luck", "x10 Frost"]
     },
     { 
         name: "Absolute Zero", 
         rate: new Decimal('2.5e21'), 
         type: "Prestigious", 
-        color: "linear-gradient(135deg, #4a0000, #6b0000)",
+        color: "linear-gradient(135deg,rgb(68, 86, 134),rgb(98, 110, 143))",
         bonuses: ["x10k Luck", "x5k XP", "x40 Snow", "x40 Frost", "x4 Rune Bulk", "x4 Rune Speed", "x4 Rune Luck"]
     },
     { 
         name: "Eternal Ice", 
         rate: new Decimal('5e25'), 
         type: "Prestigious", 
-        color: "linear-gradient(135deg, #4a0000, #6b0000)",
+        color: "linear-gradient(135deg,rgb(15, 13, 155),rgb(107, 105, 136),rgb(135, 22, 150))",
         bonuses: ["x10k Luck", "x5k XP", "x40 Frost", "x4 Rune Bulk", "x4 Rune Speed"]
     },
     { 
         name: "Crystal", 
         rate: new Decimal('2.1e33'), 
         type: "Prestigious", 
-        color: "linear-gradient(135deg, #4a0000, #6b0000)",
+        color: "linear-gradient(135deg,rgb(189, 125, 42),rgb(250, 173, 73))",
         bonuses: ["x100k Luck", "x00k XP", "x400 Plasma", "x20 Snowflakes", "x4 Rune Bulk", "x6 Rune Speed"]
     },
     { 
         name: "Cosmic Ice", 
         rate: new Decimal('2.5e40'), 
         type: "Prestigious", 
-        color: "linear-gradient(135deg, #8b3a3a, #a05050)",
+        color: "linear-gradient(135deg,rgb(164, 84, 211), rgb(57, 16, 80))",
         bonuses: ["x? Luck", "x100B XP", "x100 Snowflake", "x4 Rune Bulk", "x8 Rune Speed", "x5 Rune Luck"]
     },
     { 
         name: "Genesis Slime", 
         rate: new Decimal('7.5e41'), 
         type: "Prestigious", 
-        color: "linear-gradient(135deg, #8b3a3a, #a05050)",
+        color: "linear-gradient(135deg,rgb(86, 172, 206),rgb(103, 58, 128))",
         bonuses: ["x? Luck", "x? XP", "x24k Plasma", "x1k Snowflake", "x10 Rune Speed", "x2.5 Rune Luck"]
     },
     { 
         name: "Hellstorm Core", 
         rate: new Decimal('1.5e43'), 
         type: "Prestigious", 
-        color: "linear-gradient(135deg, #4a2c5a, #5a3c6a)",
+        color: "linear-gradient(135deg,rgb(255, 217, 0),rgb(240, 82, 19))",
         bonuses: ["x? Luck", "x? XP", "x4k Snowflake", "x2 Rune Luck", "x6 Rune Speed"]
     }
 ];
@@ -187,12 +187,14 @@ function updateRuneClones() {
     const runeCloneInput = document.getElementById('runeCloneInput');
     runeClones = new Decimal(runeCloneInput.value) || new Decimal(1);
     parseRate();
+    localStorage.setItem('savedRuneClones', runeClones.toString());
 }
 
 function updateLuck() {
     const luckInput = document.getElementById('luckInput');
     playerLuck = new Decimal(luckInput.value);
     renderDrops();
+    localStorage.setItem('savedLuck', playerLuck.toString());
 }
 
 function parseRPSInput(input) {
@@ -259,7 +261,7 @@ function formatTime(seconds) {
         } else if (seconds > 3.154e9) { // More than 100 years
             message = "A century or more... Forget it!";
         } else if (seconds > 3.154e7) { // More than 10 years
-            message = "You would need years...";
+            message = "You would need a few years...";
         } else {
             message = "A long time... but possible.";
         }
@@ -439,12 +441,25 @@ function renderDrops() {
 }
 
 window.addEventListener('load', () => {
-    const saved = localStorage.getItem('savedRPS');
-    if (saved) {
-        currentRPS = new Decimal(saved);
+    const savedRPS = localStorage.getItem('savedRPS');
+    const savedLuck = localStorage.getItem('savedLuck');
+    const savedRuneClones = localStorage.getItem('savedRuneClones');
+
+    if (savedRPS) {
+        currentRPS = new Decimal(savedRPS);
         document.getElementById('rateInput').value = formatIdleDecimal(currentRPS);
         lastDisplayedRPS = currentRPS;
         parseRate(); // Asegurarse de que se actualicen todos los valores
+    }
+
+    if (savedLuck) {
+        playerLuck = new Decimal(savedLuck);
+        document.getElementById('luckInput').value = playerLuck.toString();
+    }
+
+    if (savedRuneClones) {
+        runeClones = new Decimal(savedRuneClones);
+        document.getElementById('runeCloneInput').value = runeClones.toString();
     }
 });
 
