@@ -64,152 +64,48 @@ const drops = [
     }
 ];
 
-const NUMBER_UNITS = [
-    { suffix: 'Du', value: new Decimal('1e333') },
-    { suffix: 'NoCe', value: new Decimal('1e330') },
-    { suffix: 'OcCe', value: new Decimal('1e327') },
-    { suffix: 'SpCe', value: new Decimal('1e324') },
-    { suffix: 'SxCe', value: new Decimal('1e321') },
-    { suffix: 'QnCe', value: new Decimal('1e318') },
-    { suffix: 'QdCe', value: new Decimal('1e315') },
-    { suffix: 'TCe', value: new Decimal('1e312') },
-    { suffix: 'DCe', value: new Decimal('1e309') },
-    { suffix: 'UCe', value: new Decimal('1e306') },
-    { suffix: 'Ce', value: new Decimal('1e303') },
-    { suffix: 'NoNg', value: new Decimal('1e300') },
-    { suffix: 'OcNg', value: new Decimal('1e297') },
-    { suffix: 'SpNg', value: new Decimal('1e294') },
-    { suffix: 'SxNg', value: new Decimal('1e291') },
-    { suffix: 'QnNg', value: new Decimal('1e288') },
-    { suffix: 'QdNg', value: new Decimal('1e285') },
-    { suffix: 'TNg', value: new Decimal('1e282') },
-    { suffix: 'DNg', value: new Decimal('1e279') },
-    { suffix: 'UNg', value: new Decimal('1e276') },
-    { suffix: 'Ng', value: new Decimal('1e273') },
-    { suffix: 'NoOg', value: new Decimal('1e270') },
-    { suffix: 'OcGg', value: new Decimal('1e267') },
-    { suffix: 'SpOg', value: new Decimal('1e264') },
-    { suffix: 'SxOg', value: new Decimal('1e261') },
-    { suffix: 'QnOg', value: new Decimal('1e258') },
-    { suffix: 'QdOg', value: new Decimal('1e255') },
-    { suffix: 'TOg', value: new Decimal('1e252') },
-    { suffix: 'DOg', value: new Decimal('1e249') },
-    { suffix: 'UOg', value: new Decimal('1e246') },
-    { suffix: 'Og', value: new Decimal('1e243') },
-    { suffix: 'NoSg', value: new Decimal('1e240') },
-    { suffix: 'OcSg', value: new Decimal('1e237') },
-    { suffix: 'SpSg', value: new Decimal('1e234') },
-    { suffix: 'SxSg', value: new Decimal('1e231') },
-    { suffix: 'QnSg', value: new Decimal('1e228') },
-    { suffix: 'QdSg', value: new Decimal('1e225') },
-    { suffix: 'TSg', value: new Decimal('1e222') },
-    { suffix: 'DSg', value: new Decimal('1e219') },
-    { suffix: 'USg', value: new Decimal('1e216') },
-    { suffix: 'Sg', value: new Decimal('1e213') },
-    { suffix: 'Nosg', value: new Decimal('1e210') },
-    { suffix: 'Ocsg', value: new Decimal('1e207') },
-    { suffix: 'Spsg', value: new Decimal('1e204') },
-    { suffix: 'Sxsg', value: new Decimal('1e201') },
-    { suffix: 'Qnsg', value: new Decimal('1e198') },
-    { suffix: 'Qdsg', value: new Decimal('1e195') },
-    { suffix: 'Tsg', value: new Decimal('1e192') },
-    { suffix: 'Dsg', value: new Decimal('1e189') },
-    { suffix: 'Usg', value: new Decimal('1e186') },
-    { suffix: 'sg', value: new Decimal('1e183') },
-    { suffix: 'NoQg', value: new Decimal('1e180') },
-    { suffix: 'OcQg', value: new Decimal('1e177') },
-    { suffix: 'SpQg', value: new Decimal('1e174') },
-    { suffix: 'SxQg', value: new Decimal('1e171') },
-    { suffix: 'QnQg', value: new Decimal('1e168') },
-    { suffix: 'QdQg', value: new Decimal('1e165') },
-    { suffix: 'TQg', value: new Decimal('1e162') },
-    { suffix: 'DQg', value: new Decimal('1e159') },
-    { suffix: 'UQg', value: new Decimal('1e156') },
-    { suffix: 'Qg', value: new Decimal('1e153') },
-    { suffix: 'Noqg', value: new Decimal('1e150') },
-    { suffix: 'Ocqg', value: new Decimal('1e147') },
-    { suffix: 'Spqg', value: new Decimal('1e144') },
-    { suffix: 'Sxqg', value: new Decimal('1e141') },
-    { suffix: 'Qnqg', value: new Decimal('1e138') },
-    { suffix: 'Qdqg', value: new Decimal('1e135') },
-    { suffix: 'Tqg', value: new Decimal('1e132') },
-    { suffix: 'Dqg', value: new Decimal('1e129') },
-    { suffix: 'Uqg', value: new Decimal('1e126') },
-    { suffix: 'qg', value: new Decimal('1e123') },
-    { suffix: 'NoTg', value: new Decimal('1e120') },
-    { suffix: 'OcTg', value: new Decimal('1e117') },
-    { suffix: 'SpTg', value: new Decimal('1e114') },
-    { suffix: 'SxTg', value: new Decimal('1e111') },
-    { suffix: 'QnTg', value: new Decimal('1e108') },
-    { suffix: 'QdTg', value: new Decimal('1e105') },
-    { suffix: 'TTg', value: new Decimal('1e102') },
-    { suffix: 'DTg', value: new Decimal('1e99') },
-    { suffix: 'UTg', value: new Decimal('1e96') },
-    { suffix: 'Tg', value: new Decimal('1e93') },
-    { suffix: 'NoVg', value: new Decimal('1e90') },
-    { suffix: 'OcVg', value: new Decimal('1e87') },
-    { suffix: 'SpVg', value: new Decimal('1e84') },
-    { suffix: 'SxVg', value: new Decimal('1e81') },
-    { suffix: 'QnVg', value: new Decimal('1e78') },
-    { suffix: 'QdVg', value: new Decimal('1e75') },
-    { suffix: 'TVg', value: new Decimal('1e72') },
-    { suffix: 'DVg', value: new Decimal('1e69') },
-    { suffix: 'UVg', value: new Decimal('1e66') },
-    { suffix: 'Vg', value: new Decimal('1e63') },
-    { suffix: 'NoDe', value: new Decimal('1e60') },
-    { suffix: 'OcDe', value: new Decimal('1e57') },
-    { suffix: 'SpDe', value: new Decimal('1e54') },
-    { suffix: 'SxDe', value: new Decimal('1e51') },
-    { suffix: 'QnDe', value: new Decimal('1e48') },
-    { suffix: 'QdDe', value: new Decimal('1e45') },
-    { suffix: 'TDe', value: new Decimal('1e42') },
-    { suffix: 'DDe', value: new Decimal('1e39') },
-    { suffix: 'UDe', value: new Decimal('1e36') },
-    { suffix: 'De', value: new Decimal('1e33') },
-    { suffix: 'No', value: new Decimal('1e30') },
-    { suffix: 'Oc', value: new Decimal('1e27') },
-    { suffix: 'Sp', value: new Decimal('1e24') },
-    { suffix: 'Sx', value: new Decimal('1e21') },
-    { suffix: 'Qn', value: new Decimal('1e18') },
-    { suffix: 'Qd', value: new Decimal('1e15') },
-    { suffix: 'T', value: new Decimal('1e12') },
-    { suffix: 'B', value: new Decimal('1e9') },
-    { suffix: 'M', value: new Decimal('1e6') },
-    { suffix: 'k', value: new Decimal('1e3') }
-];
-
 let lastDisplayedRPS = new Decimal(0);
 let currentRPS = new Decimal(0);
 let playerLuck = 1;
 let runeClones = 1;
 
-function updateRuneClones() {
-    const runeCloneInput = document.getElementById('runeCloneInput');
-    runeClones = new Decimal(runeCloneInput.value) || new Decimal(1);
-    parseRate();
-    localStorage.setItem('savedRuneClones', runeClones.toString());
+function parseRuneClones() {
+    const input = document.getElementById('runeCloneInput');
+    const parsed = parseRPSInput(input.value);
+
+    if (parsed && parsed.gt(0)) {
+        runeClones = parsed;
+        localStorage.setItem('savedRuneClones', parsed.toString());
+    } else {
+        runeClones = new Decimal(1);
+    }
+
+    parseRate(); // recalcula RPS with / without clone
 }
 
-function updateLuck() {
-    const luckInput = document.getElementById('luckInput');
-    playerLuck = new Decimal(luckInput.value);
+function parseLuck() {
+    const input = document.getElementById('luckInput');
+    const parsed = parseRPSInput(input.value);
+
+    if (parsed && parsed.gt(0)) {
+        playerLuck = parsed;
+        localStorage.setItem('savedLuck', parsed.toString());
+    } else {
+        playerLuck = new Decimal(1);
+    }
+
     renderDrops();
-    localStorage.setItem('savedLuck', playerLuck.toString());
 }
 
 function parseRPSInput(input) {
     if (!input) return null;
-
-    input = input.toLowerCase().replace(/\s/g, '');
-
+    input = input.toLowerCase().replace(/\s/g,'');
     for (const unit of NUMBER_UNITS) {
-        const suffix = unit.suffix.toLowerCase();
-        if (input.endsWith(suffix)) {
-            const num = new Decimal(input.slice(0, -suffix.length));
+        if (input.endsWith(unit.suffix.toLowerCase())) {
+            const num = new Decimal(input.slice(0, -unit.suffix.length));
             return num.mul(unit.value);
         }
     }
-
     return new Decimal(input);
 }
 
@@ -337,6 +233,7 @@ function formatScientificDecimal(dec) {
 
 function formatDisplayNumber(num) {
     if (!(num instanceof Decimal)) num = new Decimal(num);
+    if (!num.isFinite()) return '∞';
 
     // Hybrid notation
     if (num.gte('1e63')) {
@@ -352,6 +249,24 @@ function formatFullNumber(num) {
 
 function normalizeRateInput() {
     const input = document.getElementById('rateInput');
+    const parsed = parseRPSInput(input.value);
+
+    if (parsed && parsed.isFinite() && parsed.gt(0)) {
+        input.value = formatIdleDecimal(parsed);
+    }
+}
+
+function normalizeRuneCloneInput() {
+    const input = document.getElementById('runeCloneInput');
+    const parsed = parseRPSInput(input.value);
+
+    if (parsed && parsed.isFinite() && parsed.gt(0)) {
+        input.value = formatIdleDecimal(parsed);
+    }
+}
+
+function normalizeLuckInput() {
+    const input = document.getElementById('luckInput');
     const parsed = parseRPSInput(input.value);
 
     if (parsed && parsed.isFinite() && parsed.gt(0)) {
@@ -439,29 +354,6 @@ function renderDrops() {
         dropList.innerHTML = '<p style="text-align: center; color: #9ca3af; padding: 40px;">No runes found</p>';
     }
 }
-
-window.addEventListener('load', () => {
-    const savedRPS = localStorage.getItem('savedRPS');
-    const savedLuck = localStorage.getItem('savedLuck');
-    const savedRuneClones = localStorage.getItem('savedRuneClones');
-
-    if (savedRPS) {
-        currentRPS = new Decimal(savedRPS);
-        document.getElementById('rateInput').value = formatIdleDecimal(currentRPS);
-        lastDisplayedRPS = currentRPS;
-        parseRate(); // Asegurarse de que se actualicen todos los valores
-    }
-
-    if (savedLuck) {
-        playerLuck = new Decimal(savedLuck);
-        document.getElementById('luckInput').value = playerLuck.toString();
-    }
-
-    if (savedRuneClones) {
-        runeClones = new Decimal(savedRuneClones);
-        document.getElementById('runeCloneInput').value = runeClones.toString();
-    }
-});
 
 function showTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => {
