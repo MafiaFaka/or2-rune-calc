@@ -19,11 +19,13 @@
             <p class="subtitle">Made by <span style="color: #30e949; font-weight: 600;">@mafia_faka</span> on discord.</p>
             <p class="subtitle">DM me for update or feedback for any errors.</p>
             <p class="subtitle info-banner">📝 For a full rune guide, check out the <a href="https://trello.com/b/QGOrP9ki/omega-rarities-2" target="_blank">Comprehensive Guide</a>!</p>
+            <p class="subtitle version" id="versionTitle">{loading version}</p>
         </header>
 
         <div class="tabs">
             <button class="tab active" onclick="showTab('calculator')">Rune Time</button>
             <button class="tab" onclick="showTab('rare-runes')">Rare Runes</button>
+            <button class="tab" onclick="showTab('update-logs')">Update Logs</button>
         </div>
 
         <div id="calculator-tab" class="tab-content">
@@ -34,12 +36,7 @@
                     <input type="text" id="runeCloneInput" value="1" oninput="parseRuneClones()"  onblur="normalizeRuneCloneInput()">
                     <label for="luckInput">Rune Luck</label>
                     <input type="text" id="luckInput" value="1" oninput="parseLuck()"  onblur="normalizeLuckInput()">
-                    <label>Enter your Runes Per Second (RPS)</label>
-                    <select id="numberFormatSelect" onchange="renderDrops(); parseRate();">
-                        <option value="short">Short</option>
-                        <option value="full">Full</option>
-                        <option value="scientific">Scientific</option>
-                    </select>                
+                    <label>Enter your Runes Per Second (RPS)</label>           
                     <input type="text" id="rateInput" value="1" oninput="parseRate()" onblur="normalizeRateInput()">
                     <div class="parsed-rate" id="parsedRate"></div>
                 </div>
@@ -75,10 +72,34 @@
         <div id="rare-runes-tab" class="tab-content" style="display: none;">
             <div class="section">
                 <h2>Rare Runes Calculator</h2>
-                <p style="color: #b8b8d4;">Calculate how much bulk you need to adjust to get the perfect RPS to get rare runes!</p>
-                <p style="color: #9ca3af; margin-top: 20px;">Coming soon...</p>
+                <p>Calculate how much bulk you need to adjust to get the perfect RPS to get rare runes!</p>
+                <p style="color: #9ca3af; margin-top: 20px;">Working on it, should be here between 25/01/2026 up to 01/02/2026</p>
             </div>
         </div>
+
+        <div id="update-logs-tab" class="tab-content" style="display: none;">
+            <div class="title-log">
+                <h2 id="version">Update Log | {loading version}</h2>
+            </div>
+            <div class="section logs">
+                <h2>v1.1 | Rare Runes Calc</h2>
+                <p>- Added the Rare Rune Calc</p>
+                <p>- ?? New Prestigious runes</p>
+                <p>- Also added update logs</p>
+                <p>- Bugs fixed & improvements 😎</p>
+            </div>
+            <div class="section logs">
+                <h2>v1.0.1 | Minor Changes</h2>
+                <p>- Improvement with the number system and some other visuals changed</p>
+                <p>- Some other visuals changed</p>
+                <p>- Bugs fixed & improvements 😎</p>
+            </div>
+            <div class="section logs">
+                <h2>v1 | Release</h2>
+                <p>- Released a calculator to for the loved community of the game Omega Rarities 2!</p>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>

@@ -69,6 +69,15 @@ let currentRPS = new Decimal(0);
 let playerLuck = 1;
 let runeClones = 1;
 
+function version() {
+    const versionTitle = document.getElementById('versionTitle');
+    const versionText = document.getElementById('version');
+    const version = 'v1.1';
+
+    versionTitle.textContent = version;
+    versionText.textContent = `Update Log | ${version}`;
+}
+
 function parseRuneClones() {
     const input = document.getElementById('runeCloneInput');
     const parsed = parseRPSInput(input.value);
@@ -370,3 +379,4 @@ function showTab(tabName) {
 
 // Initialize
 renderDrops();
+version();
