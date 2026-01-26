@@ -379,7 +379,8 @@ select {
     font-weight: 600;
 }
 
-#numberFormatSelect, #luckInput, #runeCloneInput {
+#numberFormatSelect, #luckInput, #runeCloneInput, #RareChanceInput,
+#RareCloneInput, #RareLuckInput, #RareRateInput {
     margin-bottom: 10px;
 }
 

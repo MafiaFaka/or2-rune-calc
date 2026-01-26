@@ -1,66 +1,108 @@
 const drops = [
-    { 
-        name: "Poseidon", 
-        rate: new Decimal ('1e10'), 
-        type: "Prestigious", 
+    {name: "Poseidon", 
+        rate: new Decimal ('1e10'), //10B
+        type: "Prestigious",
+        rune: "Water Rune",
         color: "linear-gradient(135deg,rgb(212, 51, 40),rgb(194, 171, 43),rgb(43, 189, 194))",
-        bonuses: ["x1k Luck", "x60k XP", "x400 Fire", "x20 Plasma", "x4 Rune Bulk"]
+        bonuses: ["x2k Luck", "x120k XP", "x800 Fire", "x40 Plasma", "x8 Rune Bulk"]
     },
-    { 
-        name: "Celestial", 
-        rate: new Decimal('1e11'), 
+    {name: "Celestial", 
+        rate: new Decimal('1e11'), //100B
         type: "Prestigious", 
+        rune: "Plasma Rune",
         color: "linear-gradient(135deg,rgb(99, 0, 112),rgb(66, 8, 73),rgb(99, 0, 112),rgb(66, 8, 73))",
-        bonuses: ["x6k Luck", "x200k XP", "x200 Plasma", "x4 Rune Bulk"]
+        bonuses: ["x12k Luck", "x400k XP", "x400 Plasma", "x8 Rune Bulk"]
     },
-    { 
-        name: "Prismatic Slime", 
-        rate: new Decimal('1e15'), 
+    {name: "Prismatic Slime", 
+        rate: new Decimal('1e15'), //1Qd
         type: "Prestigious", 
+        rune: "Slime Rune",
         color: "linear-gradient(135deg,rgb(14, 89, 99),rgb(94, 17, 42))",
-        bonuses: ["x3 Rune Luck", "x10 Frost"]
+        bonuses: ["x6 Rune Luck", "x20 Frost"]
     },
-    { 
-        name: "Absolute Zero", 
-        rate: new Decimal('2.5e21'), 
+    {name: "Absolute Zero", 
+        rate: new Decimal('2.5e21'), //2.5Sx
         type: "Prestigious", 
+        rune: "Snow Rune",
         color: "linear-gradient(135deg,rgb(68, 86, 134),rgb(98, 110, 143))",
-        bonuses: ["x10k Luck", "x5k XP", "x40 Snow", "x40 Frost", "x4 Rune Bulk", "x4 Rune Speed", "x4 Rune Luck"]
+        bonuses: ["x20k Luck", "x10k XP", "x80 Snow", "x80 Frost", "x8 Rune Bulk", "x8 Rune Speed", "x8 Rune Luck"]
     },
-    { 
-        name: "Eternal Ice", 
-        rate: new Decimal('5e25'), 
+    {name: "Eternal Ice", 
+        rate: new Decimal('5e25'), //50Sp
         type: "Prestigious", 
+        rune: "Frost Rune",
         color: "linear-gradient(135deg,rgb(15, 13, 155),rgb(107, 105, 136),rgb(135, 22, 150))",
-        bonuses: ["x10k Luck", "x5k XP", "x40 Frost", "x4 Rune Bulk", "x4 Rune Speed"]
+        bonuses: ["x20k Luck", "x10k XP", "x80 Frost", "x8 Rune Bulk", "x8 Rune Speed"]
     },
-    { 
-        name: "Crystal", 
-        rate: new Decimal('2.1e33'), 
+    {name: "Crystal", 
+        rate: new Decimal('2.1e33'), //2.1De
         type: "Prestigious", 
+        rune: "Snowflakes Rune",
         color: "linear-gradient(135deg,rgb(189, 125, 42),rgb(250, 173, 73))",
-        bonuses: ["x100k Luck", "x00k XP", "x400 Plasma", "x20 Snowflakes", "x4 Rune Bulk", "x6 Rune Speed"]
+        bonuses: ["x200k Luck", "x200k XP", "x800 Plasma", "x40 Snowflakes", "x8 Rune Bulk", "x12 Rune Speed"]
     },
-    { 
-        name: "Cosmic Ice", 
-        rate: new Decimal('2.5e40'), 
+    {name: "Cosmic Ice", 
+        rate: new Decimal('2.5e40'), //25DDe
         type: "Prestigious", 
+        rune: "Snowflakes Rune",
         color: "linear-gradient(135deg,rgb(164, 84, 211), rgb(57, 16, 80))",
-        bonuses: ["x200B Luck", "x200B XP", "x100 Snowflake", "x4 Rune Bulk", "x8 Rune Speed", "x5 Rune Luck"]
+        bonuses: ["x400B Luck", "x400B XP", "x200 Snowflake", "x8 Rune Bulk", "x16 Rune Speed", "x10 Rune Luck"]
     },
-    { 
-        name: "Genesis Slime", 
-        rate: new Decimal('7.5e41'), 
+    {name: "Genesis Slime", 
+        rate: new Decimal('7.5e41'), //750DDe
         type: "Prestigious", 
+        rune: "Slime Rune",
         color: "linear-gradient(135deg,rgb(86, 172, 206),rgb(103, 58, 128))",
-        bonuses: ["x? Luck", "x? XP", "x24k Plasma", "x1k Snowflake", "x10 Rune Speed", "x2.5 Rune Luck"]
+        bonuses: ["x4T Luck", "x4T XP", "x48k Plasma", "x2k Snowflake", "x20 Rune Speed", "x5 Rune Luck"]
     },
-    { 
-        name: "Hellstorm Core", 
-        rate: new Decimal('1.5e43'), 
+    {name: "Hellstorm Core", 
+        rate: new Decimal('1.5e43'), //15TDe
         type: "Prestigious", 
+        rune: "Fire Rune",
         color: "linear-gradient(135deg,rgb(255, 217, 0),rgb(240, 82, 19))",
-        bonuses: ["x? Luck", "x? XP", "x4k Snowflake", "x2 Rune Luck", "x6 Rune Speed"]
+        bonuses: ["x400T Luck", "x800T XP", "x8k Snowflake", "x4 Rune Luck", "x12 Rune Speed"]
+    },
+    {name: "Stardust Essence", 
+        rate: new Decimal('5e36'), //5UDe
+        type: "Prestigious", 
+        rune: "Stardust Rune",
+        color: "linear-gradient(135deg,rgb(192, 185, 160),rgb(79, 133, 108))",
+        bonuses: ["x32 Stardust", "x20B Luck", "x8 Comets"]
+    },
+    {name: "Stardust Remnant", 
+        rate: new Decimal('1e40'), //10DDe
+        type: "Prestigious", 
+        rune: "Stardust Rune",
+        color: "linear-gradient(135deg,rgb(238, 123, 219)rgb(195, 103, 223)))",
+        bonuses: ["x4B Luck", "x400Qd XP", "x20 Stardust", "x20 Comets"]
+    },
+    {name: "Cataclysm Shard", 
+        rate: new Decimal('1e63'), //1Vt
+        type: "Prestigious", 
+        rune: "Meteors Rune",
+        color: "linear-gradient(135deg,rgb(0, 132, 255),rgb(0, 132, 255))",
+        bonuses: ["x5 Singularity", "x? Luck"]
+    },
+    {name: "Extinction Core", 
+        rate: new Decimal('1e72'), //1TVt
+        type: "Prestigious", 
+        rune: "Comets Rune",
+        color: "linear-gradient(135deg,rgb(173, 173, 173),rgb(195, 164, 204))",
+        bonuses: ["x? Comets", "x5k Luck", "x? Meteors", "x? Stardust"]
+    },
+    {name: "Astral Flux", 
+        rate: new Decimal('1e78'), //1QnVt
+        type: "Prestigious", 
+        rune: "Comets Rune",
+        color: "linear-gradient(-135deg,rgb(141, 76, 226),rgb(188, 158, 228))",
+        bonuses: ["???"]
+    },
+    {name: "Cosmic Ember", 
+        rate: new Decimal('1e78'), //1QnVt
+        type: "Prestigious", 
+        rune: "Meteors Rune",
+        color: "linear-gradient(180deg,rgb(163, 50, 255),rgb(81, 33, 255))",
+        bonuses: ["???"]
     }
 ];
 
@@ -72,7 +114,7 @@ let runeClones = 1;
 function version() {
     const versionTitle = document.getElementById('versionTitle');
     const versionText = document.getElementById('version');
-    const version = 'v1.1';
+    const version = 'v1.1.1';
 
     versionTitle.textContent = version;
     versionText.textContent = `Update Log | ${version}`;
@@ -84,7 +126,6 @@ function parseRuneClones() {
 
     if (parsed && parsed.gt(0)) {
         runeClones = parsed;
-        localStorage.setItem('savedRuneClones', parsed.toString());
     } else {
         runeClones = new Decimal(1);
     }
@@ -98,7 +139,6 @@ function parseLuck() {
 
     if (parsed && parsed.gt(0)) {
         playerLuck = parsed;
-        localStorage.setItem('savedLuck', parsed.toString());
     } else {
         playerLuck = new Decimal(1);
     }
@@ -133,11 +173,13 @@ function parseRate() {
             <div><strong>RPS with Rune Clone:</strong> ${formatDisplayNumber(rpsWithClone)}</div>
             <div><strong>RPS without Rune Clone:</strong> ${formatDisplayNumber(rpsWithoutClone)}</div>
         `;
-
-        localStorage.setItem('savedRPS', parsed.toString());
     } else {
         parsedEl.textContent = '';
         currentRPS = new Decimal(0);
+    }
+
+    if (parsed.gte('1e100')) {
+        return formatScientificDecimal(num);
     }
 
     renderDrops();
@@ -245,7 +287,7 @@ function formatDisplayNumber(num) {
     if (!num.isFinite()) return '∞';
 
     // Hybrid notation
-    if (num.gte('1e63')) {
+    if (num.gte('1e100')) {
         return formatScientificDecimal(num);
     }
 
@@ -262,6 +304,10 @@ function normalizeRateInput() {
 
     if (parsed && parsed.isFinite() && parsed.gt(0)) {
         input.value = formatIdleDecimal(parsed);
+    }
+
+    if (parsed.gte('1e100')) {
+        return formatScientificDecimal(num);
     }
 }
 
@@ -281,23 +327,6 @@ function normalizeLuckInput() {
     if (parsed && parsed.isFinite() && parsed.gt(0)) {
         input.value = formatIdleDecimal(parsed);
     }
-}
-
-function animateNumber(el, from, to, duration = 300) {
-    const start = performance.now();
-
-    function frame(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const current = from.plus(to.minus(from).mul(progress));
-
-        el.textContent = formatDisplayNumber(current);
-
-        if (progress < 1) {
-            requestAnimationFrame(frame);
-        }
-    }
-
-    requestAnimationFrame(frame);
 }
 
 function renderDrops() {
@@ -347,7 +376,8 @@ function renderDrops() {
         dropItem.innerHTML = `        
             <div class="drop-info">
                 <h4 style="color: #fff; font-weight: 700;">${drop.name}</h4>
-                <div class="drop-rate">${`1 / ${formatDisplayNumber(adjustedRate)}`}</div> <!-- Probabilidad ajustada -->
+                <h4 style="color: #fff; font-weight: 700; font-size: 18px;">${drop.rune}</h4>
+                <div class="drop-rate">${`1 / ${formatDisplayNumber(adjustedRate)}`}</div>
                 <div class="bonuses-list">${bonusesHTML}</div>
             </div>
             <div class="time-estimate">${time}</div>
