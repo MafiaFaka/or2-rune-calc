@@ -73,7 +73,7 @@ const drops = [
         rate: new Decimal('1e40'), //10DDe
         type: "Prestigious", 
         rune: "Stardust Rune",
-        color: "linear-gradient(135deg,rgb(238, 123, 219)rgb(195, 103, 223)))",
+        color: "linear-gradient(135deg,rgb(68, 165, 38)rgb(195, 103, 223)))",
         bonuses: ["x4B Luck", "x400Qd XP", "x20 Stardust", "x20 Comets"]
     },
     {name: "Cataclysm Shard", 
