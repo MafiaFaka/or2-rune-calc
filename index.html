@@ -24,14 +24,14 @@
 
         <div class="tabs">
             <button class="tab active" onclick="showTab('calculator')">Rune Time</button>
-            <button class="tab" onclick="showTab('event-calculator')" style="display: none;">Event Rune Time</button>
+            <button class="tab" onclick="showTab('event-calculator')">Event Rune Time</button>
             <button class="tab" onclick="showTab('rare-runes')">Rare Runes</button>
             <button class="tab" onclick="showTab('update-logs')">Update Logs</button>
         </div>
 
         <div id="calculator-tab" class="tab-content">
             <div class="section">
-                <h2>Rune Stats</h2>
+                <h2>Runes Stats</h2>
                 <div class="input-group">
                     <label for="cloneToggle">Rune Clone</label>
                     <input type="text" id="runeCloneInput" value="1" oninput="parseRuneClones()"  onblur="normalizeRuneCloneInput()">
@@ -71,7 +71,7 @@
         </div>
 
         <div id="event-calculator-tab" class="tab-content" style="display: none;">
-            <div class="section">
+            <div class="section" style="display: none;">
                 <h2>Rune Stats</h2>
                 <div class="input-group">
                     <label for="cloneToggle">Rune Clone</label>
@@ -85,7 +85,12 @@
             </div>
 
             <div class="section">
-                <h2>Prestigious Rune Times</h2>
+                <p>Ignore the "Set RPS above", I just don't know how to do the calculation bc I miss the rps and the clone that it works. 
+                    But here you have the list of the event runes with the max bonuses.</p>
+            </div>
+
+            <div class="section">
+                <h2>Event Runes Times</h2>
                 <div class="controls">
                     <input type="text" id="eventFilterInput" placeholder="Filter runes by name..." style="flex: 1; min-width: 200px;" oninput="renderEventDrops()">
                     <div class="checkbox-group">
@@ -140,8 +145,12 @@
                 <h2 id="version">Update Log | {loading version}</h2>
             </div>
             <div class="section logs">
-                <h2>v1.1.2 - 27/01/2026 | minor changes</h2>
-                <p>- adjusted the chance to some Prestigious runes</p>
+                <h2>v1.1.3 - 27/01/2026 | Added Event Runes</h2>
+                <p>- Added Event Runes section with detailed information</p>
+            </div>
+            <div class="section logs">
+                <h2>v1.1.2 - 27/01/2026 | Minor Changes</h2>
+                <p>- Adjusted the chance to some Prestigious runes</p>
             </div>
             <div class="section logs">
                 <h2>v1.1.1 - 26/01/2026 | New runes and improvements</h2>

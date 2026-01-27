@@ -380,7 +380,8 @@ select {
 }
 
 #numberFormatSelect, #luckInput, #runeCloneInput, #RareChanceInput,
-#RareCloneInput, #RareLuckInput, #RareRateInput {
+#RareCloneInput, #RareLuckInput, #RareRateInput, #eventRuneCloneInput,
+#eventLuckInput, #eventRateInput {
     margin-bottom: 10px;
 }
 

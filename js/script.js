@@ -91,14 +91,14 @@ const drops = [
         bonuses: ["x40 Comets", "x5k Luck", "x40 Meteors", "x200 Stardust"]
     },
     {name: "Astral Flux",
-        rate: new Decimal('1e85'), //10SpVt
+        rate: new Decimal('2.5e83'), //250SxVt
         type: "Prestigious", 
         rune: "Comets Rune",
         color: "linear-gradient(-135deg,rgb(141, 76, 226),rgb(188, 158, 228))",
-        bonuses: ["???"]
+        bonuses: ["x? Luck", "x? Rune Bulk", "x? Rune Speed", "x? Rune Luck"]
     },
     {name: "Cosmic Ember", 
-        rate: new Decimal('1e85'), //10SpVt
+        rate: new Decimal('2.5e83'), //250SxVt
         type: "Prestigious", 
         rune: "Meteors Rune",
         color: "linear-gradient(180deg,rgb(163, 50, 255),rgb(81, 33, 255))",
@@ -107,40 +107,68 @@ const drops = [
 ];
 
 const eventDrops = [
-    {name: "1M Expert", 
-        rate: new Decimal ('4e7'), //40M
-        type: "Prestigious",
+    {name: "1M Noob", 
+        rate: new Decimal('1'), //1
+        type: "Basic",
         rune: "1M Rune",
-        color: "linear-gradient(135deg,rgb(212, 51, 40),rgb(194, 171, 43),rgb(43, 189, 194))",
-        bonuses: ["x? Luck", "x? Plasma", "x? Rune Bulk"]
+        color: "linear-gradient(90deg,rgb(255, 139, 255),rgb(255, 228, 72))",
+        bonuses: ["x80 Slime", "x40 Fire"]
+    },
+    {name: "1M Rookie", 
+        rate: new Decimal('2.5e3'), //2.5k
+        type: "Basic",
+        rune: "1M Rune",
+        color: "linear-gradient(90deg,rgb(85, 215, 255),rgb(59, 165, 236))",
+        bonuses: ["x160 Fire", "x36.8 Rune Bulk", "x33.6 Rune Luck"]
+    },
+    {name: "1M Skilled", 
+        rate: new Decimal('2e5'), //200k
+        type: "Basic",
+        rune: "1M Rune",
+        color: "linear-gradient(135deg,rgb(110, 214, 206))",
+        bonuses: ["x3.2T Luck", "x96 Comets", "x38.4 Snow", "x38.4 Rune Bulk", "x33.28 Rune Luck"]
+    },
+    {name: "1M Expert", 
+        rate: new Decimal ('2e7'), //20M
+        type: "Rare",
+        rune: "1M Rune",
+        color: "linear-gradient(90deg,rgb(192, 13, 0),rgb(255, 0, 106),rgb(206, 45, 5))",
+        bonuses: ["x160T Luck", "x20.8 Plasma", "x19.2 Frost", "x16.4 Rune Bulk", "x16.4 Rune Luck"]
+    },
+    {name: "1M Master", 
+        rate: new Decimal('1.5e10'), //15B
+        type: "Secret",
+        rune: "1M Rune",
+        color: "linear-gradient(90deg,rgb(203, 141, 223),rgb(209, 163, 224))",
+        bonuses: ["x5 Stardust", "x5 Meteors", "x5.2 Snowflakes", "x4.2 Rune Bulk", "x4.2 Rune Luck"]
     },
     {name: "1M Elite", 
-        rate: new Decimal('1e11'), //100B
+        rate: new Decimal('1e12'), //1T
         type: "Prestigious", 
         rune: "1M Rune",
-        color: "linear-gradient(135deg,rgb(99, 0, 112),rgb(66, 8, 73),rgb(99, 0, 112),rgb(66, 8, 73))",
-        bonuses: ["x12k Luck", "x400k XP", "x400 Plasma", "x8 Rune Bulk"]
+        color: "linear-gradient(90deg,rgb(0, 148, 247),rgb(0, 217, 255),rgb(22, 127, 197))",
+        bonuses: ["x4M Luck", "x4.8 Meteors", "x4.24 Rune Bulk", "x4.32 Rune Luck"]
     },
     {name: "1M Mythic", 
+        rate: new Decimal('5e13'), //50T
+        type: "Prestigious", 
+        rune: "1M Rune",
+        color: "linear-gradient(90deg,rgb(255, 238, 0),rgb(226, 110, 2))",
+        bonuses: ["x? Luck", "x? Stardust", "x? Comets", "x? Rune Speed", "x? Rune Luck"]
+    },
+    {name: "1M God", 
         rate: new Decimal('1e15'), //1Qd
         type: "Prestigious", 
         rune: "1M Rune",
-        color: "linear-gradient(135deg,rgb(14, 89, 99),rgb(94, 17, 42))",
-        bonuses: ["x6 Rune Luck", "x20 Frost"]
-    },
-    {name: "Absolute Zero", 
-        rate: new Decimal('2.5e21'), //2.5Sx
-        type: "Prestigious", 
-        rune: "1M Rune",
-        color: "linear-gradient(135deg,rgb(68, 86, 134),rgb(98, 110, 143))",
-        bonuses: ["x20k Luck", "x8 Rune Bulk", "x8 Rune Speed", "x8 Rune Luck"]
+        color: "linear-gradient(90deg,rgb(216, 193, 230),rgb(235, 223, 173),rgb(216, 193, 230))",
+        bonuses: ["x? Luck", "x? Comets", "x? Stardust", "x? Rune Bulk", "x? Rune Speed", "x? Passive Speed"]
     },
     {name: "1M Absolute", 
-        rate: new Decimal('5e25'), //50Sp
+        rate: new Decimal('9e17'), //900Qd
         type: "Prestigious", 
         rune: "1M Rune",
-        color: "linear-gradient(135deg,rgb(15, 13, 155),rgb(107, 105, 136),rgb(135, 22, 150))",
-        bonuses: ["x20k Luck", "x10k XP", "x80 Frost", "x8 Rune Bulk", "x8 Rune Speed"]
+        color: "linear-gradient(90deg,rgb(212, 51, 40),rgb(194, 171, 43),rgb(43, 189, 194))",
+        bonuses: ["x? Luck", "x? Singularity", "x? Meteors", "x? Rune Bulk", "x? Rune Luck", "x? Passive Speed"]
     }
 ];
 
@@ -150,7 +178,7 @@ let playerLuck = 1;
 let runeClones = 1;
 let playerEventLuck = 1;
 let eventRuneClones = 1;
-let version_number = 'v1.1.2';
+let version_number = 'v1.1.3';
 
 function version() {
     const versionTitle = document.getElementById('versionTitle');
