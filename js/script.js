@@ -88,21 +88,59 @@ const drops = [
         type: "Prestigious", 
         rune: "Comets Rune",
         color: "linear-gradient(135deg,rgb(173, 173, 173),rgb(195, 164, 204))",
-        bonuses: ["x? Comets", "x5k Luck", "x? Meteors", "x? Stardust"]
+        bonuses: ["x40 Comets", "x5k Luck", "x40 Meteors", "x200 Stardust"]
     },
-    {name: "Astral Flux", 
-        rate: new Decimal('1e78'), //1QnVt
+    {name: "Astral Flux",
+        rate: new Decimal('1e85'), //10SpVt
         type: "Prestigious", 
         rune: "Comets Rune",
         color: "linear-gradient(-135deg,rgb(141, 76, 226),rgb(188, 158, 228))",
         bonuses: ["???"]
     },
     {name: "Cosmic Ember", 
-        rate: new Decimal('1e78'), //1QnVt
+        rate: new Decimal('1e85'), //10SpVt
         type: "Prestigious", 
         rune: "Meteors Rune",
         color: "linear-gradient(180deg,rgb(163, 50, 255),rgb(81, 33, 255))",
-        bonuses: ["???"]
+        bonuses: ["x? Meteors", "x? Singularity", "x? Luck"]
+    }
+];
+
+const eventDrops = [
+    {name: "1M Expert", 
+        rate: new Decimal ('4e7'), //40M
+        type: "Prestigious",
+        rune: "1M Rune",
+        color: "linear-gradient(135deg,rgb(212, 51, 40),rgb(194, 171, 43),rgb(43, 189, 194))",
+        bonuses: ["x? Luck", "x? Plasma", "x? Rune Bulk"]
+    },
+    {name: "1M Elite", 
+        rate: new Decimal('1e11'), //100B
+        type: "Prestigious", 
+        rune: "1M Rune",
+        color: "linear-gradient(135deg,rgb(99, 0, 112),rgb(66, 8, 73),rgb(99, 0, 112),rgb(66, 8, 73))",
+        bonuses: ["x12k Luck", "x400k XP", "x400 Plasma", "x8 Rune Bulk"]
+    },
+    {name: "1M Mythic", 
+        rate: new Decimal('1e15'), //1Qd
+        type: "Prestigious", 
+        rune: "1M Rune",
+        color: "linear-gradient(135deg,rgb(14, 89, 99),rgb(94, 17, 42))",
+        bonuses: ["x6 Rune Luck", "x20 Frost"]
+    },
+    {name: "Absolute Zero", 
+        rate: new Decimal('2.5e21'), //2.5Sx
+        type: "Prestigious", 
+        rune: "1M Rune",
+        color: "linear-gradient(135deg,rgb(68, 86, 134),rgb(98, 110, 143))",
+        bonuses: ["x20k Luck", "x8 Rune Bulk", "x8 Rune Speed", "x8 Rune Luck"]
+    },
+    {name: "1M Absolute", 
+        rate: new Decimal('5e25'), //50Sp
+        type: "Prestigious", 
+        rune: "1M Rune",
+        color: "linear-gradient(135deg,rgb(15, 13, 155),rgb(107, 105, 136),rgb(135, 22, 150))",
+        bonuses: ["x20k Luck", "x10k XP", "x80 Frost", "x8 Rune Bulk", "x8 Rune Speed"]
     }
 ];
 
@@ -110,14 +148,29 @@ let lastDisplayedRPS = new Decimal(0);
 let currentRPS = new Decimal(0);
 let playerLuck = 1;
 let runeClones = 1;
+let playerEventLuck = 1;
+let eventRuneClones = 1;
+let version_number = 'v1.1.2';
 
 function version() {
     const versionTitle = document.getElementById('versionTitle');
     const versionText = document.getElementById('version');
-    const version = 'v1.1.1';
 
-    versionTitle.textContent = version;
-    versionText.textContent = `Update Log | ${version}`;
+    versionTitle.textContent = version_number;
+    versionText.textContent = `Update Log | ${version_number}`;
+}
+
+function parseEventRuneClones() {
+    const eventInput = document.getElementById('eventRuneCloneInput');
+    const eventParsed = parseRPSInput(eventInput.value);
+
+    if (eventParsed && eventParsed.gt(0)) {
+        eventRuneClones = eventParsed;
+    } else {
+        eventRuneClones = new Decimal(1);
+    }
+
+    parseEventRate(); // recalcula RPS with / without clone
 }
 
 function parseRuneClones() {
@@ -133,6 +186,19 @@ function parseRuneClones() {
     parseRate(); // recalcula RPS with / without clone
 }
 
+function parseEventLuck() {
+    const eventInput = document.getElementById('eventLuckInput');
+    const eventParsed = parseRPSInput(eventInput.value);
+
+    if (eventParsed && eventParsed.gt(0)) {
+        playerEventLuck = eventParsed;
+    } else {
+        playerEventLuck = new Decimal(1);
+    }
+
+    renderEventDrops();
+}
+
 function parseLuck() {
     const input = document.getElementById('luckInput');
     const parsed = parseRPSInput(input.value);
@@ -142,7 +208,7 @@ function parseLuck() {
     } else {
         playerLuck = new Decimal(1);
     }
-
+   
     renderDrops();
 }
 
@@ -183,6 +249,7 @@ function parseRate() {
     }
 
     renderDrops();
+    renderEventDrops();
 }
 
 function formatTime(seconds) {
@@ -394,6 +461,71 @@ function renderDrops() {
     }
 }
 
+function renderEventDrops() {
+    const eventDropList = document.getElementById('eventDropList');
+    const filterText = document.getElementById('filterInput').value.toLowerCase();
+    const hideInstant = document.getElementById('hideInstant').checked;
+    const sortType = document.getElementById('sortSelect').value;
+
+    let filteredEventDrops = eventDrops.filter(eventDrop => 
+        eventDrop.name.toLowerCase().includes(filterText)
+    );
+
+    // Sort drops
+    if (sortType === 'recommended') {
+        const order = ['Eternal', 'Oblivion', 'Umbralith', 'Nuclear', 'Aeros'];
+        filteredEventDrops.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+    } else if (sortType === 'easiest') {
+        filteredEventDrops.sort((a, b) => a.rate - b.rate);
+    } else if (sortType === 'hardest') {
+        filteredEventDrops.sort((a, b) => b.rate - a.rate);
+    }
+
+    eventDropList.innerHTML = '';
+
+    filteredEventDrops.forEach(eventDrop => {
+        const dropItem = document.createElement('div');
+        dropItem.className = 'drop-item';
+        
+        let time = 'Set RPS above';
+        let adjustedRate = eventDrop.rate;
+
+        if (currentRPS.gt(0)) {
+            adjustedRate = eventDrop.rate.div(playerLuck);
+            adjustedRPS = currentRPS.div(runeClones);
+            const seconds = adjustedRate.div(adjustedRPS);
+            time = formatTime(seconds);
+
+            if (hideInstant && seconds < 1) {
+                return;
+            }
+        }
+
+        const bonusesHTML = eventDrop.bonuses.map(bonus =>
+            `<span class="bonus-tag">${bonus}</span>`
+        ).join('');
+        
+        dropItem.innerHTML = `        
+            <div class="drop-info">
+                <h4 style="color: #fff; font-weight: 700;">${eventDrop.name}</h4>
+                <h4 style="color: #fff; font-weight: 700; font-size: 18px;">${eventDrop.rune}</h4>
+                <div class="drop-rate">${`1 / ${formatDisplayNumber(adjustedRate)}`}</div>
+                <div class="bonuses-list">${bonusesHTML}</div>
+            </div>
+            <div class="time-estimate">${time}</div>
+        `;
+
+        dropItem.style.setProperty('background', eventDrop.color);
+        dropItem.style.setProperty('border-color', 'rgba(255, 255, 255, 0.2)');
+
+        eventDropList.appendChild(dropItem);
+    });
+
+    if (filteredEventDrops.length === 0) {
+        eventDropList.innerHTML = '<p style="text-align: center; color: #9ca3af; padding: 40px;">No runes found</p>';
+    }
+}
+
 function showTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.style.display = 'none';
@@ -409,4 +541,5 @@ function showTab(tabName) {
 
 // Initialize
 renderDrops();
+renderEventDrops();
 version();

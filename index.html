@@ -24,6 +24,7 @@
 
         <div class="tabs">
             <button class="tab active" onclick="showTab('calculator')">Rune Time</button>
+            <button class="tab" onclick="showTab('event-calculator')" style="display: none;">Event Rune Time</button>
             <button class="tab" onclick="showTab('rare-runes')">Rare Runes</button>
             <button class="tab" onclick="showTab('update-logs')">Update Logs</button>
         </div>
@@ -69,6 +70,47 @@
             </div>
         </div>
 
+        <div id="event-calculator-tab" class="tab-content" style="display: none;">
+            <div class="section">
+                <h2>Rune Stats</h2>
+                <div class="input-group">
+                    <label for="cloneToggle">Rune Clone</label>
+                    <input type="text" id="eventRuneCloneInput" value="2" oninput="parseEventRuneClones()"  onblur="normalizeRuneCloneInput()" disabled>
+                    <label for="luckInput">Rune Luck</label>
+                    <input type="text" id="eventLuckInput" value="1" oninput="parseEventLuck()"  onblur="normalizeLuckInput()">
+                    <label>Enter your Runes Per Second (RPS)</label>           
+                    <input type="text" id="eventRateInput" value="1" oninput="parseEventRate()" onblur="normalizeRateInput()">
+                    <div class="parsed-rate" id="eventParsedRate"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Prestigious Rune Times</h2>
+                <div class="controls">
+                    <input type="text" id="eventFilterInput" placeholder="Filter runes by name..." style="flex: 1; min-width: 200px;" oninput="renderEventDrops()">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="eventHideInstant" onchange="renderEventDrops()">
+                        <label for="eventHideInstant" style="margin: 0; color: #30e949;">Hide Instant</label>
+                    </div>
+                    <select id="eventTimeUnitSelect" onchange="renderEventDrops()">
+                        <option value="auto">Auto Format</option>
+                        <option value="seconds">Seconds</option>
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                    </select>
+                    <select id="eventSortSelect" onchange="renderEventDrops()">
+                        <option value="recommended">Recommended</option>
+                        <option value="easiest">Easiest First</option>
+                        <option value="hardest">Hardest First</option>
+                    </select>
+                </div>
+
+                <div class="drop-list" id="eventDropList">
+                    <!-- Drops will be added here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
         <div id="rare-runes-tab" class="tab-content" style="display: none;">
             <div class="section">
                 <h2>Rare Runes Calculator</h2>
@@ -76,7 +118,7 @@
                 <p style="color: #9ca3af; margin-top: 20px;">Working on it, should be here between 25/01/2026 up to 01/02/2026</p>
             </div>
 
-            <!-- 
+            
             <div class="section">
                 <h2>Rune Stats</h2>
                 <div class="input-group">
@@ -91,12 +133,15 @@
                     <div class="parsed-rate" id="parsedRate"></div>
                 </div>
             </div>
-            -->
         </div>
         
         <div id="update-logs-tab" class="tab-content" style="display: none;">
             <div class="title-log">
                 <h2 id="version">Update Log | {loading version}</h2>
+            </div>
+            <div class="section logs">
+                <h2>v1.1.2 - 27/01/2026 | minor changes</h2>
+                <p>- adjusted the chance to some Prestigious runes</p>
             </div>
             <div class="section logs">
                 <h2>v1.1.1 - 26/01/2026 | New runes and improvements</h2>
