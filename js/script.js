@@ -178,7 +178,7 @@ let playerLuck = 1;
 let runeClones = 1;
 let playerEventLuck = 1;
 let eventRuneClones = 1;
-let version_number = 'v1.1.3';
+let version_number = 'v1.1.4';
 
 function version() {
     const versionTitle = document.getElementById('versionTitle');
