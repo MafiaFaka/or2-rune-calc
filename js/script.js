@@ -81,7 +81,7 @@ const drops = [
         type: "Prestigious", 
         rune: "Meteors Rune",
         color: "linear-gradient(135deg,rgb(0, 132, 255),rgb(0, 132, 255))",
-        bonuses: ["x5 Singularity", "x? Luck"]
+        bonuses: ["x5 Singularity", "x4No Luck"]
     },
     {name: "Extinction Core", 
         rate: new Decimal('1e72'), //1TVt
@@ -95,14 +95,14 @@ const drops = [
         type: "Prestigious", 
         rune: "Comets Rune",
         color: "linear-gradient(-135deg,rgb(141, 76, 226),rgb(188, 158, 228))",
-        bonuses: ["x? Luck", "x? Rune Bulk", "x? Rune Speed", "x? Rune Luck"]
+        bonuses: ["x? Luck", "x12 Rune Bulk", "x12 Rune Speed", "x? Rune Luck"]
     },
     {name: "Cosmic Ember", 
         rate: new Decimal('2.5e83'), //250SxVt
         type: "Prestigious", 
         rune: "Meteors Rune",
         color: "linear-gradient(180deg,rgb(163, 50, 255),rgb(81, 33, 255))",
-        bonuses: ["x? Meteors", "x? Singularity", "x? Luck"]
+        bonuses: ["x60 Meteors", "x60 Singularity", "x? Luck"]
     }
 ];
 
@@ -154,21 +154,21 @@ const eventDrops = [
         type: "Prestigious", 
         rune: "1M Rune",
         color: "linear-gradient(90deg,rgb(255, 238, 0),rgb(226, 110, 2))",
-        bonuses: ["x? Luck", "x? Stardust", "x? Comets", "x? Rune Speed", "x? Rune Luck"]
+        bonuses: ["x400M Luck", "x4.4 Stardust", "x4.8 Comets", "x4.52 Rune Speed", "x4.52 Rune Luck"]
     },
     {name: "1M God", 
         rate: new Decimal('1e15'), //1Qd
         type: "Prestigious", 
         rune: "1M Rune",
         color: "linear-gradient(90deg,rgb(216, 193, 230),rgb(235, 223, 173),rgb(216, 193, 230))",
-        bonuses: ["x? Luck", "x? Comets", "x? Stardust", "x? Rune Bulk", "x? Rune Speed", "x? Passive Speed"]
+        bonuses: ["x? Luck", "x5 Comets", "x4.8 Stardust", "x4.6 Rune Bulk", "x4.6 Rune Speed", "x? Passive Speed"]
     },
     {name: "1M Absolute", 
         rate: new Decimal('9e17'), //900Qd
         type: "Prestigious", 
         rune: "1M Rune",
         color: "linear-gradient(90deg,rgb(212, 51, 40),rgb(194, 171, 43),rgb(43, 189, 194))",
-        bonuses: ["x? Luck", "x? Singularity", "x? Meteors", "x? Rune Bulk", "x? Rune Luck", "x? Passive Speed"]
+        bonuses: ["x? Luck", "x? Singularity", "x? Meteors", "x25 Rune Bulk", "x100 Rune Luck", "x3 Passive Speed"]
     }
 ];
 
@@ -242,13 +242,22 @@ function parseLuck() {
 
 function parseRPSInput(input) {
     if (!input) return null;
-    input = input.toLowerCase().replace(/\s/g,'');
-    for (const unit of NUMBER_UNITS) {
+
+    input = input.toLowerCase().replace(/\s/g, '');
+
+    const unitsSorted = [...NUMBER_UNITS].sort(
+        (a, b) => b.suffix.length - a.suffix.length
+    );
+
+    for (const unit of unitsSorted) {
         if (input.endsWith(unit.suffix.toLowerCase())) {
-            const num = new Decimal(input.slice(0, -unit.suffix.length));
-            return num.mul(unit.value);
+            const numberPart = input.slice(0, -unit.suffix.length);
+            if (numberPart === '' || numberPart === '-') return null;
+
+            return new Decimal(numberPart).mul(unit.value);
         }
     }
+
     return new Decimal(input);
 }
 
@@ -272,12 +281,12 @@ function parseRate() {
         currentRPS = new Decimal(0);
     }
 
+    renderDrops();
+    renderEventDrops();
+
     if (parsed.gte('1e100')) {
         return formatScientificDecimal(num);
     }
-
-    renderDrops();
-    renderEventDrops();
 }
 
 function formatTime(seconds) {
@@ -455,11 +464,12 @@ function renderDrops() {
         
         if (currentRPS.gt(0)) {
             adjustedRate = drop.rate.div(playerLuck);
-            adjustedRPS = currentRPS.div(runeClones);
+            const adjustedRPS = currentRPS.div(runeClones);
             const seconds = adjustedRate.div(adjustedRPS);
+            const isInstant = seconds.lt(1);
             time = formatTime(seconds);
 
-            if (hideInstant && seconds < 1) {
+            if (hideInstant && isInstant) {
                 return;
             }
         }
@@ -520,11 +530,12 @@ function renderEventDrops() {
 
         if (currentRPS.gt(0)) {
             adjustedRate = eventDrop.rate.div(playerLuck);
-            adjustedRPS = currentRPS.div(runeClones);
+            const adjustedRPS = currentRPS.div(runeClones);
             const seconds = adjustedRate.div(adjustedRPS);
+            const isInstant = seconds.lt(1);
             time = formatTime(seconds);
 
-            if (hideInstant && seconds < 1) {
+            if (hideInstant && isInstant) {
                 return;
             }
         }

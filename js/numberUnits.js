@@ -19,19 +19,16 @@ function generateNumberUnits() {
     for (let i = 0; i < FirstOnes.length; i++) {
         for (let j = 0; j < SecondOnes.length; j++) {
             for (let k = 0; k < ThirdOnes.length; k++) {
-                const suffix = FirstOnes[i] + SecondOnes[j] + ThirdOnes[k];
-                if (suffix === "") continue;
-                const exponent = 3 + 3 * (i + j * FirstOnes.length + k * FirstOnes.length * SecondOnes.length);
-                units.push({ suffix, value: BASE.pow(exponent) });
+                for (let s = 0; s < MultOnes.length; s++) {
+                    const suffix = FirstOnes[i] + SecondOnes[j] + ThirdOnes[k] + MultOnes[s];
+                    if (suffix === "") continue;
+                    const MULT_STEP = FirstOnes.length * SecondOnes.length * ThirdOnes.length;
+                    const exponent = 3 + 3 * (i + j * FirstOnes.length + k * FirstOnes.length * SecondOnes.length + s * MULT_STEP);
+                    units.push({suffix, value: BASE.pow(exponent)});
+                }
             }
         }
     }
-
-    MultOnes.forEach((mult, idx) => {
-        if (mult === "") return;
-        const exponent = 3 + (FirstOnes.length * SecondOnes.length * ThirdOnes.length + idx) * 3;
-        units.push({ suffix: mult, value: BASE.pow(exponent) });
-    });
 
     units.sort((a, b) => b.value.minus(a.value).toNumber());
 
