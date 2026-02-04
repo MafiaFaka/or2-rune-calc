@@ -168,7 +168,7 @@ const eventDrops = [
         type: "Prestigious", 
         rune: "1M Rune",
         color: "linear-gradient(90deg,rgb(212, 51, 40),rgb(194, 171, 43),rgb(43, 189, 194))",
-        bonuses: ["x? Luck", "x8 Singularity", "x8 Meteors", "x25 Rune Bulk", "x100 Rune Luck", "x3 Passive Speed"]
+        bonuses: ["x? Luck", "x8 Singularity", "x8 Meteors", "x6.8 Rune Bulk", "x6.8 Rune Luck", "x2 Passive Speed"]
     }
 ];
 
