@@ -95,7 +95,7 @@ const drops = [
         type: "Prestigious", 
         rune: "Comets Rune",
         color: "linear-gradient(-135deg,rgb(141, 76, 226),rgb(188, 158, 228))",
-        bonuses: ["x? Luck", "x12 Rune Bulk", "x12 Rune Speed", "x? Rune Luck"]
+        bonuses: ["x? Luck", "x12 Rune Bulk", "x12 Rune Speed", "x12 Rune Luck"]
     },
     {name: "Cosmic Ember", 
         rate: new Decimal('2.5e83'), //250SxVt
@@ -161,14 +161,14 @@ const eventDrops = [
         type: "Prestigious", 
         rune: "1M Rune",
         color: "linear-gradient(90deg,rgb(216, 193, 230),rgb(235, 223, 173),rgb(216, 193, 230))",
-        bonuses: ["x? Luck", "x5 Comets", "x4.8 Stardust", "x4.6 Rune Bulk", "x4.6 Rune Speed", "x? Passive Speed"]
+        bonuses: ["x4Qd Luck", "x5 Comets", "x4.8 Stardust", "x4.6 Rune Bulk", "x4.6 Rune Speed", "x1.52 Passive Speed"]
     },
     {name: "1M Absolute", 
         rate: new Decimal('9e17'), //900Qd
         type: "Prestigious", 
         rune: "1M Rune",
         color: "linear-gradient(90deg,rgb(212, 51, 40),rgb(194, 171, 43),rgb(43, 189, 194))",
-        bonuses: ["x? Luck", "x? Singularity", "x? Meteors", "x25 Rune Bulk", "x100 Rune Luck", "x3 Passive Speed"]
+        bonuses: ["x? Luck", "x8 Singularity", "x8 Meteors", "x25 Rune Bulk", "x100 Rune Luck", "x3 Passive Speed"]
     }
 ];
 
