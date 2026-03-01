@@ -103,6 +103,13 @@ const drops = [
         rune: "Meteors Rune",
         color: "linear-gradient(180deg,rgb(163, 50, 255),rgb(81, 33, 255))",
         bonuses: ["x60 Meteors", "x60 Singularity", "x? Luck"]
+    },
+    {name: "Ignimbrite", 
+        rate: new Decimal('1e56'), //100SpDe
+        type: "Prestigious", 
+        rune: "Meteors Rune",
+        color: "linear-gradient(180deg,rgb(238, 93, 36),rgb(248, 120, 69),rgb(238, 93, 36))",
+        bonuses: ["x60 Meteors", "x60 Singularity", "x? Luck"]
     }
 ];
 
