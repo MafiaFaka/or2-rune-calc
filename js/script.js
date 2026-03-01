@@ -109,7 +109,7 @@ const drops = [
         type: "Prestigious", 
         rune: "Meteors Rune",
         color: "linear-gradient(180deg,rgb(238, 93, 36),rgb(248, 120, 69),rgb(238, 93, 36))",
-        bonuses: ["x60 Meteors", "x60 Singularity", "x? Luck"]
+        bonuses: ["x40Oc Luck", "x28 Ash", "x16 Lava", "x4 Passive Luck"]
     }
 ];
 
